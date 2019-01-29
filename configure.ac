@@ -118,6 +118,7 @@ m4_define([USB1_ADAPTERS],
 	[[vsllink], [Versaloon-Link JTAG Programmer], [VSLLINK]],
 	[[xds110], [TI XDS110 Debug Probe], [XDS110]],
 	[[osbdm], [OSBDM (JTAG only) Programmer], [OSBDM]],
+	[[cmsis_dap_v2], [CMSIS-DAP v2 Compliant Debugger], [CMSIS_DAP_USB]],
 	[[opendous], [eStick/opendous JTAG Programmer], [OPENDOUS]],
 	[[aice], [Andes JTAG Programmer], [AICE]]])
 
@@ -127,7 +128,7 @@ m4_define([USB0_ADAPTERS],
 	[[armjtagew], [Olimex ARM-JTAG-EW Programmer], [ARMJTAGEW]]])
 
 m4_define([HIDAPI_ADAPTERS],
-	[[[cmsis_dap], [CMSIS-DAP Compliant Debugger], [CMSIS_DAP]]])
+	[[[cmsis_dap], [CMSIS-DAP Compliant Debugger], [CMSIS_DAP_HID]]])
 
 m4_define([HIDAPI_USB1_ADAPTERS],
 	[[[kitprog], [Cypress KitProg Programmer], [KITPROG]]])
