@@ -393,10 +393,25 @@ static int same5_wait_and_check_error(struct target *target)
 static int same5_issue_nvmctrl_command(struct target *target, uint16_t cmd)
 {
 	int res;
+	int rep_cnt = 10000;
+	uint16_t status = 0;
 
 	if (target->state != TARGET_HALTED) {
 		LOG_ERROR("Target not halted");
 		return ERROR_TARGET_NOT_HALTED;
+	}
+
+	/* Check if the NVM controller is ready to accept a new command */
+	do {
+		res = target_read_u16(target,
+			SAMD_NVMCTRL + SAME5_NVMCTRL_STATUS, &status);
+		if (res != ERROR_OK)
+			return res;
+	} while (rep_cnt-- && (status & 1) == 0);
+
+	if ((status & 1) == 0) {
+		LOG_ERROR("Waiting NVMCTRL ready timed out.");
+		return ERROR_TIMEOUT_REACHED;
 	}
 
 	/* Issue the NVM command */
