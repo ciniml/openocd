@@ -630,6 +630,33 @@ static int jim_newtap_cmd(Jim_GetOptInfo *goi)
 					instance_id_specified = true;
 					e = jim_newtap_md_param(n, goi, pTap);
 					break;
+				case NTAP_OPT_ENABLED:
+					pTap->disabled_after_reset = false;
+					break;
+				case NTAP_OPT_DISABLED:
+					pTap->disabled_after_reset = true;
+					break;
+				case NTAP_OPT_EXPECTED_ID:
+					e = jim_newtap_expected_id(n, goi, pTap);
+					if (JIM_OK != e) {
+						free(cp);
+						free(pTap);
+						return e;
+					}
+					break;
+				case NTAP_OPT_IRLEN:
+				case NTAP_OPT_IRMASK:
+				case NTAP_OPT_IRCAPTURE:
+					e = jim_newtap_ir_param(n, goi, pTap);
+					if (JIM_OK != e) {
+						free(cp);
+						free(pTap);
+						return e;
+					}
+					break;
+				case NTAP_OPT_VERSION:
+					pTap->ignore_version = true;
+					break;
 				default:
 					e = JIM_OK;
 					break;
