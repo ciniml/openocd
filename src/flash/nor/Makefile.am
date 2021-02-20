@@ -53,6 +53,7 @@ NOR_DRIVERS = \
 	%D%/psoc6.c \
 	%D%/renesas_rpchf.c \
 	%D%/sfdp.c \
+	%D%/rp2040.c \
 	%D%/sh_qspi.c \
 	%D%/sim3x.c \
 	%D%/spi.c \
